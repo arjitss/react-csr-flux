@@ -4,7 +4,9 @@ import HomePage from './HomePage';
 import About from './About';
 import Header from './common/Header';
 import CoursePage from './CoursePage';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
+import PageNotFound from './common/PageNotFound';
+import ManageCoursePage from './ManageCoursePage';
 
 AppLogic.propTypes = {};
 
@@ -23,9 +25,13 @@ function AppLogic(props) {
   return (
     <div>
       <Header />
-      <Route path="/" exact component={HomePage} />
-      <Route path="/courses" component={CoursePage} />
-      <Route path="/about" component={About} />
+      <Switch>
+        <Route path="/" exact component={HomePage} />
+        <Route path="/courses" component={CoursePage} />
+        <Route path="/about" component={About} />
+        <Route path="/course/:slug" component={ManageCoursePage} />
+        <Route component={PageNotFound} />
+      </Switch>
       {/*getPage() // -- this is now not required and 
       client side routing can be done using react router dom*/}
     </div>

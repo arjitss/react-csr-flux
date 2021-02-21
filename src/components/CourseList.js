@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 /** Two ways to display data in react
  * 1. Calling a method on each map elemet - GetCourseData1
@@ -21,9 +22,15 @@ const GetCourseData2 = (props) => {
     return props.courseArray.map((course) => {
       return (
         <tr key={course.id}>
-          <td>{course.title}</td>
-          <td>{course.authorId}</td>
-          <td>{course.category}</td>
+          <td>
+            <Link to={'/course/' + course.slug}>{course.title}</Link>
+          </td>
+          <td>
+            <Link to={'/course/' + course.slug}>{course.authorId}</Link>
+          </td>
+          <td>
+            <Link to={'/course/' + course.slug}>{course.category}</Link>
+          </td>
         </tr>
       );
     });
