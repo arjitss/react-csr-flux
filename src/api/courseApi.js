@@ -19,7 +19,8 @@ export function getCourseBySlug(slug) {
 }
 
 export function saveCourse(course) {
-  return fetch(baseUrl + (course.id || ''), {
+  let baseUrl1 = 'http://localhost:3001/courses/';
+  return fetch(baseUrl1 + (course.id || ''), {
     method: course.id ? 'PUT' : 'POST', // POST for create, PUT to update when id already exists.
     headers: { 'content-type': 'application/json' },
     body: JSON.stringify({
@@ -33,7 +34,8 @@ export function saveCourse(course) {
 }
 
 export function deleteCourse(courseId) {
-  return fetch(baseUrl + courseId, { method: 'DELETE' })
+  let baseUrl1 = 'http://localhost:3001/courses/';
+  return fetch(baseUrl1 + courseId, { method: 'DELETE' })
     .then(handleResponse)
     .catch(handleError);
 }

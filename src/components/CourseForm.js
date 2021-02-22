@@ -4,7 +4,7 @@ CourseForm.propTypes = {};
 
 function CourseForm(props) {
   return (
-    <form className="container">
+    <form className="container" onSubmit={props.onSubmit}>
       <TextInput
         id="title"
         label="Title"
