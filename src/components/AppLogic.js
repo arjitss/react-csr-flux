@@ -30,6 +30,7 @@ function AppLogic(props) {
         <Route path="/courses" component={CoursePage} />
         <Route path="/about" component={About} />
         <Route path="/course/:slug" component={ManageCoursePage} />
+        <Route path="/course/" component={ManageCoursePage} />
         <Route component={PageNotFound} />
       </Switch>
       {/*getPage() // -- this is now not required and 
