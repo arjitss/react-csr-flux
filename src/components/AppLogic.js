@@ -7,6 +7,8 @@ import CoursePage from './CoursePage';
 import { Route, Switch } from 'react-router-dom';
 import PageNotFound from './common/PageNotFound';
 import ManageCoursePage from './ManageCoursePage';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 AppLogic.propTypes = {};
 
@@ -24,6 +26,7 @@ function AppLogic(props) {
   };
   return (
     <div>
+      <ToastContainer autoClose={3000} />
       <Header />
       <Switch>
         <Route path="/" exact component={HomePage} />

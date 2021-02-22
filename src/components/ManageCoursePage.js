@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Prompt } from 'react-router-dom';
 import CourseForm from './CourseForm';
 import * as courseApi from '../api/courseApi';
+import { toast } from 'react-toastify';
 
 ManageCoursePage.propTypes = {};
 
@@ -30,6 +31,7 @@ function ManageCoursePage(props) {
     console.log(course);
     courseApi.saveCourse(course).then(() => {
       props.history.push('/courses');
+      toast.success('Its Saved..!!!');
     });
   };
   return (
