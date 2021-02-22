@@ -14,15 +14,20 @@ function ManageCoursePage(props) {
     category: '',
   });
 
-  const onTitleChange = (e) => {
-    debugger;
-    const updatedCourse = { ...course, title: e.target.value };
+  //   const onTitleChange = (e) => {
+  //     debugger;
+  //     const updatedCourse = { ...course, title: e.target.value };
+  //     setCourse(updatedCourse);
+  //   };
+  const handleChange = (e) => {
+    // debugger;
+    const updatedCourse = { ...course, [e.target.name]: e.target.value };
     setCourse(updatedCourse);
   };
   return (
     <div className="container">
       <h2>ManageCoursePage</h2>
-      <CourseForm course={course} onTitleChange={onTitleChange} />
+      <CourseForm course={course} onChange={handleChange} />
       <Prompt when={true} message="Are you sure ?" />
       {console.log(props)}
     </div>
