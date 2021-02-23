@@ -15,6 +15,7 @@ function ManageCoursePage(props) {
     authorId: null,
     category: '',
   });
+  const [error, setError] = useState({});
 
   //   const onTitleChange = (e) => {
   //     debugger;
@@ -24,11 +25,25 @@ function ManageCoursePage(props) {
   const handleChange = (e) => {
     // debugger;
     const updatedCourse = { ...course, [e.target.name]: e.target.value };
+    const updatedError = { ...error, [e.target.name]: '' };
     setCourse(updatedCourse);
+    setError(updatedError);
+  };
+  const isFormValid = () => {
+    const _error = {};
+    if (!course.title) _error.title = 'Title is required';
+    if (!course.authorId) _error.authorId = 'Author Id is required';
+    if (!course.category) _error.category = 'Category is required';
+
+    setError(_error);
+    return Object.keys(_error) === 0;
   };
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(course);
+    if (!isFormValid()) {
+      return;
+    }
     courseApi.saveCourse(course).then(() => {
       props.history.push('/courses');
       toast.success('Its Saved..!!!');
@@ -41,6 +56,7 @@ function ManageCoursePage(props) {
         course={course}
         onChange={handleChange}
         onSubmit={handleSubmit}
+        pageErrors={error}
       />
       <Prompt when={true} message="Are you sure ?" />
       {console.log(props)}

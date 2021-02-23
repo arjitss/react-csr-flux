@@ -1,6 +1,11 @@
 import PropTypes from 'prop-types';
 import TextInput from './common/TextInput';
-CourseForm.propTypes = {};
+CourseForm.propTypes = {
+  course: PropTypes.object.isRequired,
+  onChange: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  error: PropTypes.object.isRequired,
+};
 
 function CourseForm(props) {
   return (
@@ -11,6 +16,7 @@ function CourseForm(props) {
         name="title"
         onChange={props.onChange}
         value={props.course.title}
+        error={props.pageErrors.title}
       />
 
       <div className="form-group">
@@ -28,6 +34,9 @@ function CourseForm(props) {
             <option value="2">Scott Allen</option>
           </select>
         </div>
+        {props.pageErrors.authorId && (
+          <div className="alert alert-danger">{props.pageErrors.authorId}</div>
+        )}
       </div>
 
       <TextInput
@@ -36,6 +45,7 @@ function CourseForm(props) {
         name="category"
         onChange={props.onChange}
         value={props.course.category}
+        error={props.pageErrors.category}
       />
 
       <input type="submit" value="Save" className="btn btn-primary" />
