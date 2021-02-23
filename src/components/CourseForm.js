@@ -4,7 +4,7 @@ CourseForm.propTypes = {
   course: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
-  error: PropTypes.object.isRequired,
+  error: PropTypes.object,
 };
 
 function CourseForm(props) {

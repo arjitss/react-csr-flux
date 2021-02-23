@@ -7,7 +7,8 @@ export function getCourses() {
 }
 
 export function getCourseBySlug(slug) {
-  return fetch(baseUrl + '?slug=' + slug)
+  let baseUrl1 = 'http://localhost:3001/courses/';
+  return fetch(baseUrl1 + '?slug=' + slug)
     .then((response) => {
       if (!response.ok) throw new Error('Network response was not ok.');
       return response.json().then((courses) => {
