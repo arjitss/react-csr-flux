@@ -4,6 +4,8 @@ import { Prompt } from 'react-router-dom';
 import CourseForm from './CourseForm';
 import * as courseApi from '../api/courseApi';
 import { toast } from 'react-toastify';
+import courseStore from '../stores/courseStore';
+import * as courseActions from '../actions/courseAction';
 
 ManageCoursePage.propTypes = {};
 
@@ -26,9 +28,10 @@ function ManageCoursePage(props) {
     const slug = props.match.params.slug; // passed by react router
     console.log(slug);
     if (slug) {
-      courseApi.getCourseBySlug(slug).then((_course) => {
-        setCourse(_course);
-      });
+      //   courseApi.getCourseBySlug(slug).then((_course) => {
+      //     setCourse(_course);
+      //   });
+      setCourse(courseStore.getCourseBySlug(slug));
     }
   }, [props.match.params.slug]);
   const handleChange = (e) => {
@@ -45,7 +48,7 @@ function ManageCoursePage(props) {
     if (!course.category) _error.category = 'Category is required';
 
     setError(_error);
-    return Object.keys(_error) === 0;
+    return Object.keys(_error).length === 0;
   };
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -53,7 +56,8 @@ function ManageCoursePage(props) {
     if (!isFormValid()) {
       return;
     }
-    courseApi.saveCourse(course).then(() => {
+    //    courseApi.saveCourse(course).then(() => {
+    courseActions.saveCourse(course).then(() => {
       props.history.push('/courses');
       toast.success('Its Saved..!!!');
     });
