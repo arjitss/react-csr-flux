@@ -31,6 +31,9 @@ const GetCourseData2 = (props) => {
           <td>
             <Link to={'/course/' + course.slug}>{course.category}</Link>
           </td>
+          <td>
+            <button className="btn btn-outline-danger">Delete</button>
+          </td>
         </tr>
       );
     });
@@ -51,6 +54,7 @@ function CourseList(props) {
           <th>Title</th>
           <th>Author Id</th>
           <th>Category</th>
+          <th>Delete</th>
         </tr>
       </thead>
       <tbody>
